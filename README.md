@@ -2,61 +2,77 @@
 - Managed spark Platform 
 - clean Room : Shared spaced for external vendors 
 - All catalogs are auto created on AWS eg: Catalog > Settings  > Metastore
-  
+- Data can reside in any Cloud Vendor
+- .dbc file to import template Eg: Folder Structure , Schema etc.,
+- Fivetran connector used to connect to external vendors 
+
+
 ## Layers 
 1. Workspace : Code / Project
 2. Catalog : Store Data
+3. Data Ingestion : Connect External Data 
+4. Auto Loader : Managed Streaming Solution for File Drops
 
-## Important :
-1. UnityCatalog : Everything under Catalog Explorer Eg: Catalogs, schemas, tables, views
    
 ## Workspace : 
-    1. Complete Workspace
-    2. Create : 
-        - Folder
-        - Git
-        - Files
-        - Notebook
-        - Query
-        - Alert
-        - Pipeline
-        - Dashboard
-        - Genie,ML
-Catalog : 
-Jobs and Pipelines : Notebooks
-SQL :
-Genie
-
-
-
+1. Complete Workspace
+2. Create : 
+    - Folder
+    - Git
+    - Files
+    - Notebook
+    - Query
+    - Alert
+    - Pipeline
+    - Dashboard
+    - Genie,ML
+  
 ## Catalog 
-    - Unity Catalog = Catalog Explorer
-    - Used to Store Data 
-    - Unity Catalog contains
-        - Catalog :
-           - Eg: (Dev , Staging , prod)  or   ( Bronze , Silver , Gold ) or  (Finance , Sales)
-           - ```Create Catalog C;
-                Use Catalog C;
-                create schema C.bronze;
-                SELECT * FROM C.schema.T
-             ```
-            - Catalog can contain : Volumne , Table . Model , Secret , Connection , Service , Skill , Metric View
-        - External Location :
-        - Volume: 
-            - similar to Docker Volume Mapping in Docker or  
-        - Secret : 
-        - Credential
-        - Connection
-        - Service 
-        - Skill 
-        
+- Unity Catalog = Everything under Catalog Explorer Eg: Catalogs, schemas, tables, views
+- Used to Store Data 
+- Contains:
+    - Catalog :
+       - Eg: (Dev , Staging , prod)  or   ( Bronze , Silver , Gold ) or  (Finance , Sales)
+       - ```Create Catalog C;
+            Use Catalog C;
+            create schema C.bronze;
+            SELECT * FROM C.schema.T ```
+        - Catalog  : Volume , Table (Delta) , Model , Secret , Connection , Service , Skill , Metric View
+        - Upload files directly as Delta table
+    - External Location : Wizard to Connect to External Vendors for Read and Writing
+    - Volume: Similar to Blob Storage
+          - Managed : Managed by Databricks
+          - External : Managed by External Location
+    - Secret : 
+    - Credential
+    - Connection
+    - Service 
+    - Skill 
+## Data Ingestion
+1. Provide CDC
+2. Query Based Capture
 
-Data Types
-    - Managed : Internal and Managed 
-    - External : 
-        - Eg : S3
-    - External to Managed : 
-        - create table T using Delta location 's3://path' as select
+## AutoLoader 
+1. Spark Structured Stream
+2. Used for File drop
+3. Needs Checkpoint location (created next to drop location)
+4. Create External Location for s3
+```
+df = (spark.readStream
+    .format("cloudFiles")
+    .option("cloudFiles.format", "json")
+    .option("cloudFiles.schemaLocation", checkpointPath)
+    .option("cloudFiles.schemaEvolutionMode", "rescue")
+    .load("s3://src")
+)
+
+df.writeStream \
+    .format("delta") \
+    .option("checkpointLocation", checkpointPath) \
+    .trigger(processingTime="30 seconds") \
+    .start("s3://destination")
+```
+
 
 ## Data Governance :
 1. RBAC
