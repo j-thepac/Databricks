@@ -6,6 +6,7 @@
 - .dbc file to import template Eg: Folder Structure , Schema etc.,
 - Fivetran connector used to connect to external vendors 
 - dbutils.fs.ls(path)
+- spark.read.table('catalog.schema.table')
   
 ## Important 
 - Workspace : Code / Project
@@ -13,8 +14,22 @@
 - Data Ingestion : Connect External Data 
 - Auto Loader : Managed Streaming Solution for File Drops
 - Data Governance
+- Archtitecture
+  - Workspace and Catalog should follow same Folders structure
+  - Eg: Sales > ProjectA > (bronze , silver , gold )
+ 
 
-  
+## Activity: Build Medallion Architecture ingesting Data from S3 for project Myproject
+### Pre- Req
+1. Create AWS account and create S3
+2. Create Databricks account
+3. Create External Location in Databricks and connect to S3
+4. Drop files to S3 loaction for ingestion
+
+### Steps : Use Genie for creation 
+1. Bronze : Ingest data as Streaming Delta tables
+2. 
+
 ## Workspace : 
 1. Complete Workspace
 2. Create : 
