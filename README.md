@@ -105,7 +105,7 @@ df.writeStream \
 1. Use Decorators
 2. Builtin SCD Types
 3. Types:
-   - Materilised views :
+   - materialized_view :
      - For Batch processing
      - Cached
      - Incremental Ingestion
@@ -114,7 +114,7 @@ df.writeStream \
 5. Create under : Pipeline > ETL pipleine
 ```
 from pyspark import pipelines
-@pipelines.materialized_viw
-def fn():return spark.read.format("csv")
+@pipelines.materialized_view
+def fn():return spark.read.format("csv") #spark.read.table("fn")
 
 ```
