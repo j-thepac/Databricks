@@ -5,7 +5,7 @@
 - Data can reside in any Cloud Vendor
 - .dbc file to import template Eg: Folder Structure , Schema etc.,
 - Fivetran connector used to connect to external vendors 
-- dbutils.help()
+- dbutils.fs.ls(path)
   
 ## Important 
 - Workspace : Code / Project
