@@ -5,15 +5,14 @@
 - Data can reside in any Cloud Vendor
 - .dbc file to import template Eg: Folder Structure , Schema etc.,
 - Fivetran connector used to connect to external vendors 
-
-
-## Layers 
-1. Workspace : Code / Project
-2. Catalog : Store Data
-3. Data Ingestion : Connect External Data 
-4. Auto Loader : Managed Streaming Solution for File Drops
-
-   
+- dbutils.help()
+  
+## Important 
+- Workspace : Code / Project
+- Catalog : Store Data
+- Data Ingestion : Connect External Data 
+- Auto Loader : Managed Streaming Solution for File Drops
+- Data Governance
 ## Workspace : 
 1. Complete Workspace
 2. Create : 
@@ -47,7 +46,8 @@
     - Credential
     - Connection
     - Service 
-    - Skill 
+    - Skill
+      
 ## Data Ingestion
 1. Provide CDC
 2. Query Based Capture
@@ -72,7 +72,6 @@ df.writeStream \
     .trigger(processingTime="30 seconds") \
     .start("s3://destination")
 ```
-
 
 ## Data Governance :
 1. RBAC
