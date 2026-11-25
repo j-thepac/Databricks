@@ -17,7 +17,9 @@
 - Archtitecture
   - Workspace and Catalog should follow same Folders structure
   - Eg: Sales > ProjectA > (bronze , silver , gold )
- 
+ - Jobs and Pipelines
+ - SDP / LDP : LakeFlow Declarative pipelines / Spark Declarative Pipelines 
+
 
 ## Activity: Build Medallion Architecture ingesting Data from S3 for project Myproject
 ### Pre- Req
@@ -93,3 +95,26 @@ df.writeStream \
 1. RBAC
 2. User --> Group <---- Access
 3. Settings > Identity and Access > Add Users , groups 
+
+## Jobs and Pipelines 
+- Jobs : Pipeline using Notebooks 
+- ETL pipleine : LDP 
+- Ingestion Pipeline
+
+## Spark Declarative Pipeline (SDP) / LakeFlow Declarative Pipeline (LDP) :
+1. Use Decorators
+2. Builtin SCD Types
+3. Types:
+   - Materilised views :
+     - For Batch processing
+     - Cached
+     - Incremental Ingestion
+   - Streaming Tables 
+   - Views 
+5. Create under : Pipeline > ETL pipleine
+```
+from pyspark import pipelines
+@pipelines.materialized_viw
+def fn():return spark.read.format("csv")
+
+```
