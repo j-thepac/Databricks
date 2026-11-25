@@ -13,6 +13,8 @@
 - Data Ingestion : Connect External Data 
 - Auto Loader : Managed Streaming Solution for File Drops
 - Data Governance
+
+  
 ## Workspace : 
 1. Complete Workspace
 2. Create : 
@@ -31,7 +33,6 @@
 - Used to Store Data 
 - Contains:
     - Catalog :
-       - Eg: (Dev , Staging , prod)  or   ( Bronze , Silver , Gold ) or  (Finance , Sales)
        - ```Create Catalog C;
             Use Catalog C;
             create schema C.bronze;
