@@ -7,20 +7,25 @@
 - Fivetran connector used to connect to external vendors 
 - dbutils.fs.ls(path)
 - spark.read.table('catalog.schema.table')
-  
-## Important 
+- Project Structure
+  - Workspace and Catalog should follow same Folders structure
+  - Eg: Sales > ProjectA > (bronze , silver , gold )
+
+## Contents 
 - Workspace : Code / Project
 - Catalog : Store Data
 - Data Ingestion : Connect External Data 
 - Auto Loader : Managed Streaming Solution for File Drops
 - Data Governance
-- Archtitecture
-  - Workspace and Catalog should follow same Folders structure
-  - Eg: Sales > ProjectA > (bronze , silver , gold )
- - Jobs and Pipelines
- - SDP / LDP : LakeFlow Declarative pipelines / Spark Declarative Pipelines 
-
-
+- Jobs and Pipelines
+- SDP / LDP : LakeFlow Declarative Pipelines / Spark Declarative Pipelines 
+- DAB : Declarative Bundles (Deployment)
+- Databricks SQL (Query )
+- Genie (AI)
+- LakeFlow Designer /  Visual Prep (ADF)
+- Datbricks LakeBase
+- Databricks CLI for Calude Code Integration
+  
 ## Activity: Build Medallion Architecture ingesting Data from S3 for project Myproject
 ### Pre- Req
 1. Create AWS account and create S3
@@ -29,8 +34,6 @@
 4. Drop files to S3 loaction for ingestion
 
 ### Steps : Use Genie for creation 
-1. Bronze : Ingest data as Streaming Delta tables
-2. 
 
 ## Workspace : 
 1. Complete Workspace
@@ -102,7 +105,7 @@ df.writeStream \
 - Ingestion Pipeline
 
 ## Spark Declarative Pipeline (SDP) / LakeFlow Declarative Pipeline (LDP) :
-1. Use Decorators
+1. Decorators
 2. Builtin SCD Types
 3. Types:
    - materialized_view :
@@ -111,10 +114,45 @@ df.writeStream \
      - Incremental Ingestion
    - Streaming Tables 
    - Views 
-5. Create under : Pipeline > ETL pipleine
+5. Pipeline > ETL pipleine
+6. SQL and Pyspark
+```
+create or alter materialized View V as
+select * from T
+```
+
 ```
 from pyspark import pipelines
 @pipelines.materialized_view
 def fn():return spark.read.format("csv") #spark.read.table("fn")
-
 ```
+
+
+## Asset Bundles / Automation  Bundles
+- Deployment
+- Steps:
+  - Workspace > New Folder > Add Notebook
+  - Start Servless
+  - Expand Terminal
+      ```$databricks bundle init
+        $projectName
+      ```
+  - Project gets created
+  - Git : Workspace > Create > Git 
+
+## Databricks SQL
+- Run Queries quickly
+  - Parameterize the Queries
+- Contains : Queries , Dashboards
+
+## Genie
+1. Types : Inline Code Help and Interactive Agentic AI
+2. Add Schdules in Genie
+3. Genie can be integrated to Dashboards
+
+## LakeFlow Designer /  Visual Prep  
+1. Similar to ADF
+2. Data Engineering  >  Visual Prep
+
+##  LakeBase 
+- Home > Compute > Lakebase
