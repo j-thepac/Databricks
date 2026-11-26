@@ -108,11 +108,11 @@ df.writeStream \
 1. Decorators
 2. Builtin SCD Types
 3. Types: 
-  - @pipelines.table : Read Streaming Table
-  - @pipelines.materialized_view : Batch processing / Intermittent DF
-  - Validations
-    - @dp.expect("title", "C IS NOT NULL")
-    - @dp.expect_or_drop("coord_exist", "lC IS NOT NULL")
+    - @pipelines.table : Read Streaming Table
+    - @pipelines.materialized_view : Batch processing / Intermittent DF
+    - Validations
+      - @dp.expect("title", "C IS NOT NULL")
+      - @dp.expect_or_drop("coord_exist", "lC IS NOT NULL")
 5. Pipeline > ETL pipleine
 6. SQL and Pyspark (declarative Syntx)
       ``` SQL
