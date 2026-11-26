@@ -107,27 +107,24 @@ df.writeStream \
 ## Spark Declarative Pipeline (SDP) / LakeFlow Declarative Pipeline (LDP) :
 1. Decorators
 2. Builtin SCD Types
-3. Types:
-   - materialized_view :
-     - For Batch processing
-     - Cached
-     - Incremental Ingestion
-   - Streaming Tables 
-   - Views 
+3. Types: 
+  - @pipelines.table : Read Streaming Table
+  - @pipelines.materialized_view : Batch processing / Intermittent DF
+  - Validations
+    - @dp.expect("title", "C IS NOT NULL")
+    - @dp.expect_or_drop("coord_exist", "lC IS NOT NULL")
 5. Pipeline > ETL pipleine
-6. SQL and Pyspark
-```
-create or alter materialized View V as
-select * from T
-```
-
-```
-from pyspark import pipelines
-@pipelines.materialized_view
-def fn():return spark.read.format("csv") #spark.read.table("fn")
-```
-
-
+6. SQL and Pyspark (declarative Syntx)
+      ``` SQL
+      create or alter materialized View V as
+      select * from T
+      ```
+      
+      ```Pyspark
+      from pyspark import pipelines
+      @pipelines.materialized_view 
+      def fn():return spark.read.format("csv") #spark.read.table("fn")
+      ```
 ## Asset Bundles / Automation  Bundles
 - Deployment
 - Steps:
