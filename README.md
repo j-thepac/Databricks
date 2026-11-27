@@ -125,8 +125,17 @@ df.writeStream \
       @pipelines.materialized_view 
       def fn():return spark.read.format("csv") #spark.read.table("fn")
       ```
-## Asset Bundles / Automation  Bundles
-- Deployment
+## Automation  Bundles
+- Create a Bundle of Databricks artifacts and Deploy
+- Artifacts : Everything except Data 
+- Steps:
+  - Create Git Repo with default README.md
+  - Open Data Bricks > Landing Page> Profile > Settings > Linked Accounts  > Git Integration > Finish Setup
+  - Workspace > Create > Git Folder > Paste Git Repo Link
+  - Click on "main" button > Create new branch "feature"
+  - Click on "main" button > Pull
+  - Create > Bundle 
+- 
 - Steps:
   - Workspace > New Folder > Add Notebook
   - Start Servless
