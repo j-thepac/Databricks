@@ -134,18 +134,19 @@ df.writeStream \
   - Workspace > Create > Git Folder > Paste Git Repo Link
   - Click on "main" button > Create new branch "feature"
   - Click on "main" button > Pull
-  - Create > Bundle 
-- 
-- Steps:
-  - Workspace > New Folder > Add Notebook
-  - Start Servless
-  - Expand Terminal
-      ```$databricks bundle init
-        $projectName
-      ```
-  - Project gets created
-  - Git : Workspace > Create > Git 
-
+  - Worspace > Create "Dev_catalog" and "Prod_catalog"
+  - Create > Bundle > Default Python > next > Uncheck "Include ETL pipeline" "Include sample.." ,  default "dev" , select personal schema"no" > create only
+      - Once created > resource > open "sample_job.yml" > modify as required : name , params  , notebook etc., 
+      - Modify ipynb  using Genie Eg: CREATE SCHEMA IF NOT EXISTS and Catalog . 
+      - ipynb geneie : Use paramterise catalog and schema to create tables
+      - databricks.yml : Notice all lines 1) parameters decalred are used in below env 2)Under Workspaces hard code schema and Catalog for different env
+    - COmmit and push
+    - Once merge to main . In Databricks sync with main
+    - Databricks > BUndle Editor> Deploument> Deploy
+    - Goto Pipeline and Jobs > Run the job
+      - Once job is run > Catalog > Schema > Table > History and check logs (select compute)  
+   
+    
 ## Databricks SQL
 - Run Queries quickly
   - Parameterize the Queries
