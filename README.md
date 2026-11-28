@@ -126,8 +126,11 @@ df.writeStream \
       def fn():return spark.read.format("csv") #spark.read.table("fn")
       ```
 ## Automation  Bundles
-- Create a Bundle of Databricks artifacts and Deploy
-- Artifacts : Everything except Data 
+- Databricks has 2 homes :
+  - Landing Page > Home
+  - Landing Page > Workspace > home (Deployments done here)
+- Two Parts : Git Folder > Bundle
+- Git folder = Commit , Bundle = Deploy 
 - Steps:
   - Create Git Repo with default README.md
   - Open Data Bricks > Landing Page> Profile > Settings > Linked Accounts  > Git Integration > Finish Setup
@@ -143,9 +146,10 @@ df.writeStream \
     - COmmit and push
     - Once merge to main . In Databricks sync with main
     - Databricks > BUndle Editor> Deploument> Deploy
-    - Goto Pipeline and Jobs > Run the job
+      - Goto Pipeline and Jobs > Run the job
       - Once job is run > Catalog > Schema > Table > History and check logs (select compute)  
-   
+     - Goto Workspace > Home > Git Rep> Bundle > Deploy to Prod
+       - Goto Pipeline and Jobs > Run the job
     
 ## Databricks SQL
 - Run Queries quickly
